@@ -2,6 +2,7 @@
     "diagnostics.globals": [
         "vim",
         "config",
-        "kdskfk"
+        "kdskfk",
+        "signcolumn"
     ]
 }
