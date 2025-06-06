@@ -1,4 +1,4 @@
-local installs = { 'lua_ls', 'pyright', 'clangd', "html", "cssls", "eslint", "marksman" }
+local installs = { 'lua_ls', 'pyright', 'clangd', "superhtml", "cssls", "eslint", "marksman" }
 
 return{
   {
