@@ -1,12 +1,12 @@
-local installs = { 'lua_ls', 'pyright', 'clangd', "superhtml", "cssls", "eslint", "marksman" }
+local installs = { 'lua_ls', 'pyright', 'clangd', "superhtml", "cssls", "eslint", "ts_ls", "ast_grep", "marksman" }
 
-return{
+return {
   {
-  "williamboman/mason.nvim",
-  event = "BufReadPre",
-  config = function()
-    require("mason").setup()
-  end,
+    "williamboman/mason.nvim",
+    event = "BufReadPre",
+    config = function()
+      require("mason").setup()
+    end,
   },
   {
     "williamboman/mason-lspconfig.nvim",

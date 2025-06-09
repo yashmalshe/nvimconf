@@ -5,6 +5,7 @@ vim.cmd("set shiftwidth=2")
 vim.cmd("set autoindent")
 vim.cmd("set nohlsearch")
 vim.cmd("set signcolumn=yes")
+vim.cmd("set guicursor=n-v-c-i:block")
 vim.g.mapleader = " "
 vim.opt.number = true
 vim.opt.relativenumber = true
