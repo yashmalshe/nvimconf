@@ -14,16 +14,19 @@ return {
           completion = cmp.config.window.bordered(),
           documentation = cmp.config.window.bordered(),
         },
+        experimental = {
+          ghost_text = true,
+        },
         mapping = cmp.mapping.preset.insert({
           ['<C-Space>'] = cmp.mapping.complete(),
           ['<Esc>'] = cmp.mapping.abort(),
-          ['\t'] = cmp.mapping.confirm({ select = true }), -- Accept currently selected item. Set `select` to `false` to only confirm explicitly selected items.
+          ["<Tab>"] = cmp.mapping.confirm({ select = true }),
         }),
         sources = cmp.config.sources({
           { name = 'nvim_lsp' },
           { name = 'luasnip' },
-        }, {
           { name = 'buffer' },
+          { name = "path" },
         })
       })
     end
