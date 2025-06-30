@@ -1,8 +1,18 @@
 return {
   {
+    "L3MON4D3/LuaSnip",
+    version = "v2.*",
+    dependencies = {
+      'saadparwaiz1/cmp_luasnip',
+      'rafamadriz/friendly-snippets'
+    },
+  },
+
+  {
     'hrsh7th/nvim-cmp',
     config = function()
-      local cmp = require 'cmp'
+      local cmp = require('cmp')
+      local luasnip = require('luasnip') 
       require('luasnip.loaders.from_vscode').lazy_load()
       cmp.setup({
         snippet = {
@@ -19,23 +29,33 @@ return {
         },
         mapping = cmp.mapping.preset.insert({
           ['<C-Space>'] = cmp.mapping.complete(),
-
-          ["<Tab>"] = cmp.mapping(function(fallback)
-            local luasnip = require("luasnip")
+          ['<Tab>'] = cmp.mapping(function(fallback)
+            if cmp.visible() then
+              if luasnip.expandable() then
+                luasnip.expand()
+              else
+                cmp.confirm({
+                  select = true,
+                })
+              end
+            else
+              fallback()
+            end
+          end),
+          ["<CR>"] = cmp.mapping(function(fallback)
             if cmp.visible() then
               cmp.select_next_item()
-            elseif luasnip.expand_or_jumpable() then
-              luasnip.expand()
+            elseif luasnip.locally_jumpable(1) then
+              luasnip.jump(1)
             else
               fallback()
             end
           end, { "i", "s" }),
 
           ["<S-Tab>"] = cmp.mapping(function(fallback)
-            local luasnip = require("luasnip")
             if cmp.visible() then
               cmp.select_prev_item()
-            elseif luasnip.jumpable(-1) then
+            elseif luasnip.locally_jumpable(-1) then
               luasnip.jump(-1)
             else
               fallback()
@@ -47,27 +67,8 @@ return {
           { name = 'luasnip' },
           { name = 'buffer' },
           { name = "path" },
-        }),
-        formatting = {
-          format = function(entry, vim_item)
-            vim_item.menu = ({
-              nvim_lsp = "[LSP]",
-              luasnip = "[Snip]",
-              buffer = "[Buf]",
-              path = "[Path]",
-            })[entry.source.name]
-            return vim_item
-          end,
-        }
+        })
       })
     end
   },
-  {
-    "L3MON4D3/LuaSnip",
-    version = "v2.*",
-    dependencies = {
-      'saadparwaiz1/cmp_luasnip',
-      'rafamadriz/friendly-snippets'
-    },
-  }
 }

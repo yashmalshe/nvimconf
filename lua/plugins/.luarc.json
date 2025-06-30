@@ -3,6 +3,7 @@
         "vim",
         "config",
         "kdskfk",
-        "signcolumn"
+        "signcolumn",
+        "luasnip"
     ]
 }
