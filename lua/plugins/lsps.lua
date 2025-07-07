@@ -1,4 +1,4 @@
-local installs = { 'lua_ls', 'pyright', 'clangd', "arduino_language_server", "superhtml", "cssls", "eslint", "ts_ls", "marksman", "neocmake" }
+local installs = { 'lua_ls', 'pylsp', 'clangd', "arduino_language_server", "superhtml", "cssls", "eslint", "ts_ls", "markdown_oxide", "neocmake" }
 return {
   {
     "williamboman/mason.nvim",
